@@ -84,7 +84,7 @@ DEFAULT_NEUTRAL_MEME = _pick_neutral(MEMES, "sigma")
 print(f"[INFO] Meme neutral seleccionado: '{DEFAULT_NEUTRAL_MEME}'")
 
 # NUEVO: toggles de visualización
-SHOW_LANDMARKS = True
+SHOW_LANDMARKS = False
 SHOW_GESTURE_TEXT = True
 SHOW_FACE_LANDMARKS = False  # no mostrar marcas en la cara
 
@@ -348,3 +348,46 @@ finally:
     cap.release()
     holistic.close()
     cv2.destroyAllWindows()
+
+# ---------------------------------------------------------------------
+# HELP: Comandos rápidos para subir todo con Git LFS
+# (Ajusta <URL_DEL_REPO> y extensiones según necesites)
+#
+# 1) Inicializar y activar LFS (si no está):
+#    git lfs install
+#
+# 2) Rastrear archivos grandes (ej. carpeta memes y tipos de imagen):
+#    git lfs track "memes/*" "*.jpg" "*.png" "*.webp"
+#    git add .gitattributes
+#
+# 3) Nuevo repo -> añadir, commitear y subir:
+#    git init
+#    git remote add origin <URL_DEL_REPO>
+#    git add -A
+#    git commit -m "Initial commit (con LFS)"
+#    git branch -M main
+#    git push -u origin main
+#    git lfs push --all origin main
+#
+# 4) Repo existente con archivos grandes ya commiteados -> migrar a LFS:
+#    git lfs migrate import --include="memes/*,*.jpg,*.png" --include-ref=refs/heads/main
+#    git push --force origin main
+#    git lfs push --all origin main
+#
+# 5) Añadir nuevos memes / actualizar:
+#    cp nuevo_meme.jpg memes/
+#    git add memes/nuevo_meme.jpg
+#    git commit -m "Agregar meme nuevo_meme"
+#    git push
+#
+# 6) Comandos útiles:
+#    git lfs ls-files        # ver ficheros registrados en LFS
+#    git lfs status
+#    git lfs fetch --all     # bajar objetos LFS
+#    git lfs prune           # limpiar objetos no referenciados
+#
+# Notas:
+# - Si tu remoto es GitHub, crea el repo vacío en GitHub antes de 'git remote add'.
+# - 'git lfs migrate' reescribe historial: úsalo con cuidado y coordina con colaboradores.
+# - Para Windows PowerShell, usa & para rutas con espacios al invocar python.
+# ---------------------------------------------------------------------

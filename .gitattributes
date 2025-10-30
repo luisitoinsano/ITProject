@@ -1,3 +1,8 @@
+memes/ filter=lfs diff=lfs merge=lfs -text
+memes/* filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.webp filter=lfs diff=lfs merge=lfs -text
 detector_emociones filter=lfs diff=lfs merge=lfs -text
 memes filter=lfs diff=lfs merge=lfs -text
 snapshots/** filter=lfs diff=lfs merge=lfs -text
@@ -34,8 +39,5 @@ memes/** filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.mov filter=lfs diff=lfs merge=lfs -text
 *.webm filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
 *.jpeg filter=lfs diff=lfs merge=lfs -text
-*.png filter=lfs diff=lfs merge=lfs -text
-*.webp filter=lfs diff=lfs merge=lfs -text
 *.gif filter=lfs diff=lfs merge=lfs -text
