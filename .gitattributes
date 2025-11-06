@@ -1,4 +1,4 @@
-# Carpetas completas
+# Carpetas completas en LFS
 detector_emociones/** filter=lfs diff=lfs merge=lfs -text
 memes/**                filter=lfs diff=lfs merge=lfs -text
 snapshots/**            filter=lfs diff=lfs merge=lfs -text
@@ -10,44 +10,50 @@ snapshots/**            filter=lfs diff=lfs merge=lfs -text
 *.webp  filter=lfs diff=lfs merge=lfs -text
 *.bmp   filter=lfs diff=lfs merge=lfs -text
 *.gif   filter=lfs diff=lfs merge=lfs -text
+# Imágenes (mayúsculas también)
+*.JPG   filter=lfs diff=lfs merge=lfs -text
+*.JPEG  filter=lfs diff=lfs merge=lfs -text
+*.PNG   filter=lfs diff=lfs merge=lfs -text
+*.WEBP  filter=lfs diff=lfs merge=lfs -text
+*.BMP   filter=lfs diff=lfs merge=lfs -text
+*.GIF   filter=lfs diff=lfs merge=lfs -text
 # Video
 *.mp4   filter=lfs diff=lfs merge=lfs -text
 *.mov   filter=lfs diff=lfs merge=lfs -text
 *.webm  filter=lfs diff=lfs merge=lfs -text
+# Video (mayúsculas)
+*.MP4   filter=lfs diff=lfs merge=lfs -text
+*.MOV   filter=lfs diff=lfs merge=lfs -text
+*.WEBM  filter=lfs diff=lfs merge=lfs -text
 # Modelos / binarios pesados
 *.tflite filter=lfs diff=lfs merge=lfs -text
 *.onnx   filter=lfs diff=lfs merge=lfs -text
 *.pb     filter=lfs diff=lfs merge=lfs -text
 *.bin    filter=lfs diff=lfs merge=lfs -text
-# Librerías nativas y ejecutables (site-packages dentro de detector_emociones)
+# Librerías nativas y ejecutables
 *.dll   filter=lfs diff=lfs merge=lfs -text
 *.pyd   filter=lfs diff=lfs merge=lfs -text
 *.so    filter=lfs diff=lfs merge=lfs -text
 *.dylib filter=lfs diff=lfs merge=lfs -text
 *.exe   filter=lfs diff=lfs merge=lfs -text
-detector_emociones filter=lfs diff=lfs merge=lfs -text
-memes filter=lfs diff=lfs merge=lfs -text
-snapshots/** filter=lfs diff=lfs merge=lfs -text
-.dll filter=lfs diff=lfs merge=lfs -text
-.pyd filter=lfs diff=lfs merge=lfs -text
-.exe filter=lfs diff=lfs merge=lfs -text
-.so filter=lfs diff=lfs merge=lfs -text
-.dylib filter=lfs diff=lfs merge=lfs -text
-.bin filter=lfs diff=lfs merge=lfs -text
-.pb filter=lfs diff=lfs merge=lfs -text
-.tflite filter=lfs diff=lfs merge=lfs -text
-.onnx filter=lfs diff=lfs merge=lfs -text
-.mp4 filter=lfs diff=lfs merge=lfs -text
-.mov filter=lfs diff=lfs merge=lfs -text
-.webm filter=lfs diff=lfs merge=lfs -text
-.gif filter=lfs diff=lfs merge=lfs -text
-.jpg filter=lfs diff=lfs merge=lfs -text
-.jpeg filter=lfs diff=lfs merge=lfs -text
-.png filter=lfs diff=lfs merge=lfs -text
-.webp filter=lfs diff=lfs merge=lfs -text
-.bmp filter=lfs diff=lfs merge=lfs -text
+# ---------------------------------------------------------------------
+# HELP: sincronizar local == remoto con Git LFS (PowerShell en raíz del repo)
+# 1) (Opcional) asegurar carpetas no vacías:
+#    ni memes\.gitkeep -ItemType file; ni snapshots\.gitkeep -ItemType file
+# 2) Confirmar cambios:
+#    git add -A && git commit -m "chore: update"
+# 3) LFS y migración del historial:
+#    git lfs install
+#    py -m pip install git-filter-repo
+#    git lfs migrate import --include="detector_emociones/**,memes/**,snapshots/**,*.dll,*.pyd,*.exe,*.so,*.dylib,*.bin,*.pb,*.tflite,*.onnx,*.mp4,*.mov,*.webm,*.gif,*.jpg,*.jpeg,*.png,*.webp,*.bmp,*.JPG,*.JPEG,*.PNG,*.WEBP,*.BMP,*.GIF,*.MP4,*.MOV,*.WEBM" --everything
+# 4) Subir:
+#    git push --force origin main
+#    git lfs push --all origin main
+# 5) Verificar:
+#    git lfs ls-files
 detector_emociones/venv/** filter=lfs diff=lfs merge=lfs -text
 memes/** filter=lfs diff=lfs merge=lfs -text
+snapshots/** filter=lfs diff=lfs merge=lfs -text
 *.pyd filter=lfs diff=lfs merge=lfs -text
 *.dll filter=lfs diff=lfs merge=lfs -text
 *.exe filter=lfs diff=lfs merge=lfs -text
