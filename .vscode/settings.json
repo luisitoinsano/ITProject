@@ -1,3 +1,8 @@
 {
+    // Forzar el intérprete Python del workspace al venv local dentro de detector_emociones
+    "python.defaultInterpreterPath": "${workspaceFolder}/detector_emociones/venv/Scripts/python.exe",
+    // Activar automáticamente el entorno Python en la terminal integrada
+    "python.terminal.activateEnvironment": true,
+    // Mantener lista vacía para integraciones (no requerida pero evita que VS Code la añada automáticamente)
     "python-envs.pythonProjects": []
 }

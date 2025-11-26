@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <p><a href="/">Volver</a></p>
+    {% if files %}
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        {% for f in files %}
+          <div style="width:200px;text-align:center">
+            <img src="{{ prefix }}{{ f }}" style="max-width:100%;height:auto;border:1px solid #ccc" />
+            <div>{{ f }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No hay imágenes en esta carpeta.</p>
+    {% endif %}
+  </body>
+</html>
