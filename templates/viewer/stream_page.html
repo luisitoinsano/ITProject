@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Live Stream + Meme</title>
+    <style>
+      .container{display:flex;gap:10px;align-items:flex-start}
+      .stream{flex:1}
+      .meme{width:320px}
+      img {max-width:100%;height:auto}
+    </style>
+  </head>
+  <body>
+    <h1>Stream en vivo</h1>
+    <div class="container">
+      <div class="stream">
+        <h3>Cámara (webcam)</h3>
+        <img id="streamimg" src="/stream/" alt="stream" />
+      </div>
+      <div class="meme">
+        <h3>Meme emparejado</h3>
+        <img id="memeimg" src="/media/memes/{{ meme }}.jpg" alt="meme" />
+        <div id="memename">{{ meme }}</div>
+      </div>
+    </div>
+
+    <script>
+      // Poll server for current meme every 300ms
+      async function fetchMeme(){
+        try{
+          const r = await fetch('/current_meme/');
+          if(!r.ok) return;
+          const j = await r.json();
+          const key = j.meme || 'neutral';
+          // try common extensions, update src only if changed
+          const img = document.getElementById('memeimg');
+          const name = document.getElementById('memename');
+          if(img.dataset.key !== key){
+            // try jpg then png then webp
+            img.dataset.key = key;
+            name.textContent = key;
+            const tryUrls = ['/media/memes/' + key + '.jpg', '/media/memes/' + key + '.png', '/media/memes/' + key + '.webp'];
+            (async function tryNext(i){
+              if(i>=tryUrls.length) { img.src = '/static/no-image.png'; return; }
+              const url = tryUrls[i] + '?t=' + Date.now();
+              const resp = await fetch(url, {method:'HEAD'}).catch(()=>null);
+              if(resp && resp.ok){ img.src = url; } else { tryNext(i+1); }
+            })(0);
+          }
+        }catch(e){/* ignore */}
+      }
+      setInterval(fetchMeme, 400);
+      fetchMeme();
+    </script>
+  </body>
+</html>
